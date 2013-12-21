@@ -1,3 +1,22 @@
+<?php /* Smarty version Smarty-3.0.8, created on 2013-12-21 19:39:59
+         compiled from "application/views/js/metrikan_inspector.js" */ ?>
+<?php /*%%SmartyHeaderCode:105004536652b618bfb90b92-09373249%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    'e45d3af68d661e0b34571625013775345d833752' => 
+    array (
+      0 => 'application/views/js/metrikan_inspector.js',
+      1 => 1387665596,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '105004536652b618bfb90b92-09373249',
+  'function' => 
+  array (
+  ),
+  'has_nocache_code' => false,
+)); /*/%%SmartyHeaderCode%%*/?>
 (function(window, undefined) {
 
 	var metrikan = (function() {
@@ -11,7 +30,8 @@
 					callback = _fnCallback;
 				}
 
-				jQuery.getScript('{$FULL_PATH}/js/jquery/jquery.dom-outline-1.0.js', function() {
+				jQuery.getScript('<?php echo $_smarty_tpl->getVariable('FULL_PATH')->value;?>
+/js/jquery/jquery.dom-outline-1.0.js', function() {
 					mk.domOutliner = DomOutline({ 
 						onClick: function(element) {
 							mk.domOutlinerCallback(element);
@@ -25,8 +45,10 @@
 					});
 
 					if(typeof jQuery.fancybox === 'undefined') {
-						jQuery.getScript('{$FULL_PATH}/js/jquery/jquery.fancybox.pack.js', function() {
-							jQuery.get('{$BASE_URL}/metrikan/loadFancyboxCss/', function(data) {
+						jQuery.getScript('<?php echo $_smarty_tpl->getVariable('FULL_PATH')->value;?>
+/js/jquery/jquery.fancybox.pack.js', function() {
+							jQuery.get('<?php echo $_smarty_tpl->getVariable('BASE_URL')->value;?>
+/metrikan/loadFancyboxCss/', function(data) {
 								mk.helpers.writeStylesheet(data);
 								callback();
 							});
@@ -40,7 +62,8 @@
 			},
 
 			buildTools: function() {				
-				jQuery('{$tools}').prependTo('body');
+				jQuery('<?php echo $_smarty_tpl->getVariable('tools')->value;?>
+').prependTo('body');
 
 				jQuery('.metrikanInspect').on('click', function(e) {
 					e.preventDefault();
