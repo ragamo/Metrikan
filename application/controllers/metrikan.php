@@ -11,13 +11,11 @@ class Metrikan extends CI_Controller {
 		$tools = preg_replace("/\n/", "", preg_replace("/\t/", "", $tools));
 
 		$data['tools'] = $tools;
-		$this->smarty->view('js/metrikan_edit.js', $data);
+		$this->smarty->view('js/metrikan_inspector.js', $data);
 	}
 
 	public function loadFancyboxCss() {
-		$css = $this->smarty->view('css/jquery.fancybox.css', array(), true);
-		//$css = preg_replace("/\n/", "", preg_replace("/\t/", "", $css));
-		echo $css;
+		echo $this->smarty->view('css/jquery.fancybox.css', array(), true);
 	}
 
 }
