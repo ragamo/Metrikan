@@ -18,9 +18,14 @@
 						},
 						onStart: function() {
 							jQuery('.metrikanInspect').addClass('pressed');
+							jQuery('.metrikanMark').removeClass('metrikanMark');
+							jQuery('#metrikanTooltip').hide();
 						},
 						onStop: function() {
 							jQuery('.metrikanInspect').removeClass('pressed');
+						},
+						onUpdate: function(element) {
+							jQuery('.metrikanPath').html(mk.getElementPath(element));
 						}
 					});
 
@@ -50,7 +55,13 @@
 			},
 
 			domOutlinerCallback: function(element) {
-				console.log(mk.getElementPath(element));
+				var path = mk.getElementPath(element);
+				var element = jQuery(element).addClass('metrikanMark');
+
+				jQuery('#metrikanTooltip').css({
+					top: element.offset().top + element.height() + 10,
+					left: element.offset().left +10
+				}).show();
 			},
 
 			getElementPath: function(element) {

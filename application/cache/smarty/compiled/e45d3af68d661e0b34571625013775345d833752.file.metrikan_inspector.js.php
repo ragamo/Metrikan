@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.8, created on 2013-12-21 19:39:59
+<?php /* Smarty version Smarty-3.0.8, created on 2013-12-22 15:35:13
          compiled from "application/views/js/metrikan_inspector.js" */ ?>
-<?php /*%%SmartyHeaderCode:105004536652b618bfb90b92-09373249%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:9661033752b730e14cd6f6-64658705%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'e45d3af68d661e0b34571625013775345d833752' => 
     array (
       0 => 'application/views/js/metrikan_inspector.js',
-      1 => 1387665596,
+      1 => 1387737311,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '105004536652b618bfb90b92-09373249',
+  'nocache_hash' => '9661033752b730e14cd6f6-64658705',
   'function' => 
   array (
   ),
@@ -38,9 +38,14 @@ $_smarty_tpl->decodeProperties(array (
 						},
 						onStart: function() {
 							jQuery('.metrikanInspect').addClass('pressed');
+							jQuery('.metrikanMark').removeClass('metrikanMark');
+							jQuery('#metrikanTooltip').hide();
 						},
 						onStop: function() {
 							jQuery('.metrikanInspect').removeClass('pressed');
+						},
+						onUpdate: function(element) {
+							jQuery('.metrikanPath').html(mk.getElementPath(element));
 						}
 					});
 
@@ -73,7 +78,13 @@ $_smarty_tpl->decodeProperties(array (
 			},
 
 			domOutlinerCallback: function(element) {
-				console.log(mk.getElementPath(element));
+				var path = mk.getElementPath(element);
+				var element = jQuery(element).addClass('metrikanMark');
+
+				jQuery('#metrikanTooltip').css({
+					top: element.offset().top + element.height() + 10,
+					left: element.offset().left +10
+				}).show();
 			},
 
 			getElementPath: function(element) {

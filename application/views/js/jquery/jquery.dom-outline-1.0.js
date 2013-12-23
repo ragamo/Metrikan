@@ -21,7 +21,8 @@ var DomOutline = function (options) {
 			borderWidth: options.borderWidth || 2,
 			onClick: options.onClick || false,
 			onStart: options.onStart || false,
-			onStop: options.onStop || false
+			onStop: options.onStop || false,
+			onUpdate: options.onUpdate || false
 		},
 		keyCodes: {
 			BACKSPACE: 8,
@@ -121,6 +122,10 @@ var DomOutline = function (options) {
 		self.elements.bottom.css({ top: top + pos.height, left: pos.left - b, width: pos.width + b, height: b });
 		self.elements.left.css({ top: top - b, left: Math.max(0, pos.left - b), width: b, height: pos.height + b });
 		self.elements.right.css({ top: top - b, left: pos.left + pos.width, width: b, height: pos.height + (b * 2) });
+
+		if (self.opts.onUpdate) {
+			self.opts.onUpdate(pub.element);
+		}
 	}
 
 	function stopOnEscape(e) {
